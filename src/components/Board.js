@@ -19,18 +19,15 @@ class Board extends React.Component {
   };
 
   componentDidMount() {
-    let stateBoard = this.initBoard();
-    this.setState({
-      board: JSON.parse(JSON.stringify(stateBoard)),
-      player1: "RD",
-      player2: "BL",
-      memoryBoard: [...this.state.memoryBoard, stateBoard],
-    });
+
+    this.initBoard();
+
+
   }
 
   // initializing board
   initBoard = () => {
-    this.setState({ board: [] });
+    // this.setState({ board: [] });
     let board = [];
     // creating 8 rows
     for (let j = 0; j < 8; j++) {
@@ -63,9 +60,18 @@ class Board extends React.Component {
       }
     }
 
-    this.setState({ turn: this.state.player2 });
+    // this.setState({ turn: this.state.player2 });
 
-    return board;
+       this.setState({
+      board: JSON.parse(JSON.stringify(board)),
+      player1: "RD",
+      player2: "BL",
+      turn: this.state.player2,
+      memoryBoard: [board],
+      movesCounter: 0
+    });
+
+    // return board;
   };
 
   undoLastMove = () => {
@@ -101,7 +107,7 @@ class Board extends React.Component {
 
   setPose = (index, color) => {
     testPose(index, color, this.setState.bind(this), this.state);
-  }; // setPose
+  };
 
   render() {
     console.log("moves counter", this.state.movesCounter);
@@ -114,7 +120,7 @@ class Board extends React.Component {
             <button
               type="button"
               className="btn btn-secondary"
-              onClick={() => this.componentDidMount()}
+              onClick={() => this.initBoard()}
             >
               New Game
             </button>
@@ -188,7 +194,6 @@ const Row = ({ row, index, board, setPose }) => {
             rows={index}
             board={board}
             setPose={setPose}
-            value={row[i]}
           />
         ))}
       </div>

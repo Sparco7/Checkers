@@ -1,3 +1,6 @@
+// const isValidMove = (fromIndex, toIndex, board) => {
+  // Returns true if move is valid, false otherwise
+// }
 const setPose = (index, color, setState, state) => {
 
     console.log('stats', setState, state)

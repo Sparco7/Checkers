@@ -22,7 +22,7 @@ class Square extends React.Component {
 				let color = 'cell';
 				
 				// Creating 2Colored Board
-				if ((!(this.props.rows % 2) && !(this.props.i % 2 )) || (this.props.rows % 2) && (this.props.i % 2 )) {
+				if ((!(this.props.rows % 2) && !(this.props.i % 2 )) || ((this.props.rows % 2) && (this.props.i % 2 ))) {
 					color += ' green-square';
 				} else {
 					color += ' white-square';
